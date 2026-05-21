@@ -413,7 +413,7 @@ export default function Page() {
                     setMobileMenuOpen(false);
                     scrollToSection("hero");
                   }}
-                  className="font-mono text-sm tracking-wider uppercase text-left py-2 border-b border-white/5 text-gray-300"
+                  className="font-mono text-sm tracking-wider uppercase text-left py-3.5 border-b border-white/5 text-gray-300"
                 >
                   <span className="text-orange-400 mr-2">01 //</span> Home
                 </button>
@@ -422,7 +422,7 @@ export default function Page() {
                     setMobileMenuOpen(false);
                     scrollToSection("expertise");
                   }}
-                  className="font-mono text-sm tracking-wider uppercase text-left py-2 border-b border-white/5 text-gray-300"
+                  className="font-mono text-sm tracking-wider uppercase text-left py-3.5 border-b border-white/5 text-gray-300"
                 >
                   <span className="text-violet-400 mr-2">02 //</span> AI Stack
                 </button>
@@ -431,7 +431,7 @@ export default function Page() {
                     setMobileMenuOpen(false);
                     scrollToSection("projects");
                   }}
-                  className="font-mono text-sm tracking-wider uppercase text-left py-2 border-b border-white/5 text-gray-300"
+                  className="font-mono text-sm tracking-wider uppercase text-left py-3.5 border-b border-white/5 text-gray-300"
                 >
                   <span className="text-amber-400 mr-2">03 //</span> Systems
                 </button>
@@ -440,7 +440,7 @@ export default function Page() {
                     setMobileMenuOpen(false);
                     scrollToSection("timeline");
                   }}
-                  className="font-mono text-sm tracking-wider uppercase text-left py-2 border-b border-white/5 text-gray-300"
+                  className="font-mono text-sm tracking-wider uppercase text-left py-3.5 border-b border-white/5 text-gray-300"
                 >
                   <span className="text-orange-400 mr-2">04 //</span> Timeline
                 </button>
@@ -449,7 +449,7 @@ export default function Page() {
                     setMobileMenuOpen(false);
                     scrollToSection("contact");
                   }}
-                  className="font-mono text-sm tracking-wider uppercase text-left py-2 text-gray-300"
+                  className="font-mono text-sm tracking-wider uppercase text-left py-3.5 text-gray-300"
                 >
                   <span className="text-violet-400 mr-2">05 //</span> Connect
                 </button>
