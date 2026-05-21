@@ -1,0 +1,6 @@
+{
+  "name": "Munshid Rahman K - AI/ML Portfolio",
+  "description": "Interactive WebGL/3D portfolio website of Munshid Rahman K, an AI/ML Engineer. Includes a 3D canvas and an interactive AI brain drawer to explore his expertise.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

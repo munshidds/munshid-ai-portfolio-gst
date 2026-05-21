@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+:root {
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+}
+
+body {
+  font-family: var(--font-sans), sans-serif;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: var(--font-display), sans-serif;
+}
+
+code, pre, .font-mono {
+  font-family: var(--font-mono), monospace;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(10, 10, 15, 0.4);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(232, 122, 93, 0.4);
+}
+
+/* Glow effects */
+.panel-glow {
+  box-shadow: 0 0 30px -10px rgba(232, 122, 93, 0.15);
+}
+
+.panel-glow-purple {
+  box-shadow: 0 0 30px -10px rgba(167, 139, 250, 0.15);
+}
+
+.panel-glow-gold {
+  box-shadow: 0 0 30px -10px rgba(245, 158, 11, 0.15);
+}
