@@ -2,7 +2,7 @@ import { GoogleGenAI } from "@google/genai";
 import { NextRequest, NextResponse } from "next/server";
 
 const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY || "",
+  apiKey: process.env.GEMINI_API_KEY || "AIzaSyCNR_QcOtSbu6WReK2FRC6NpDFHTmfNPjw",
   httpOptions: {
     headers: {
       'User-Agent': 'aistudio-build',

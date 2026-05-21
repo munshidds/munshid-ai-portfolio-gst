@@ -30,7 +30,10 @@ import {
   X,
   Upload,
   Camera,
-  RefreshCw
+  RefreshCw,
+  Briefcase,
+  TrendingUp,
+  Workflow
 } from "lucide-react";
 import ThreeBackground from "@/components/ThreeBackground";
 import MindChatDrawer from "@/components/MindChatDrawer";
@@ -39,7 +42,7 @@ import ProjectTiltCard from "@/components/ProjectTiltCard";
 import { CinematicReveal, LetterReveal, CinematicSubheading } from "@/components/CinematicTitle";
 
 // Custom type for active viewport section
-type SectionId = "hero" | "expertise" | "projects" | "contact";
+type SectionId = "hero" | "expertise" | "projects" | "timeline" | "contact";
 
 export default function Page() {
   const [activeSection, setActiveSection] = useState<SectionId>("hero");
@@ -84,6 +87,7 @@ export default function Page() {
   const heroRef = useRef<HTMLElement>(null);
   const expertiseRef = useRef<HTMLElement>(null);
   const projectsRef = useRef<HTMLElement>(null);
+  const timelineRef = useRef<HTMLElement>(null);
   const contactRef = useRef<HTMLElement>(null);
 
   const bgShape1Ref = useRef<HTMLDivElement>(null);
@@ -157,10 +161,13 @@ export default function Page() {
       const heroTop = heroRef.current?.offsetTop || 0;
       const expertiseTop = expertiseRef.current?.offsetTop || 0;
       const projectsTop = projectsRef.current?.offsetTop || 0;
+      const timelineTop = timelineRef.current?.offsetTop || 0;
       const contactTop = contactRef.current?.offsetTop || 0;
 
       if (scrollPos >= contactTop - 100) {
         setActiveSection("contact");
+      } else if (scrollPos >= timelineTop - 100) {
+        setActiveSection("timeline");
       } else if (scrollPos >= projectsTop - 100) {
         setActiveSection("projects");
       } else if (scrollPos >= expertiseTop - 100) {
@@ -201,81 +208,101 @@ export default function Page() {
   const expertiseData = [
     {
       id: "ai-ml",
-      title: "AI & Machine Learning",
+      title: "AI & Intelligence Systems",
       icon: <Brain className="w-6 h-6 text-orange-400" />,
       tagline: "advanced generative architectures",
       glowClass: "panel-glow",
       colorTheme: "amber",
       skills: [
-        { name: "Large Language Models (LLMs)", level: "expert" },
+        { name: "Generative AI Applications", level: "expert" },
         { name: "Retrieval-Augmented Gen (RAG)", level: "expert" },
-        { name: "Prompt Engineering & Evaluation", level: "expert" },
-        { name: "Natural Language Processing (NLP)", level: "expert" },
-        { name: "OCR & Document Parsing", level: "advanced" },
-        { name: "Transformer fine-tuning", level: "advanced" }
+        { name: "Agentic AI Frameworks", level: "expert" },
+        { name: "LLM Fine-Tuning & Prompting", level: "expert" },
+        { name: "NLP & OCR Systems", level: "expert" },
+        { name: "Semantic Search Architectures", level: "expert" }
       ],
-      tools: ["Gemini", "GPT (OpenAI)", "LLaMA", "Qwen", "LangChain", "LangGraph"]
+      tools: ["GPT", "Gemini", "Qwen", "LLaMA", "CLIP", "TrOCR"]
     },
     {
-      id: "backend-db",
-      title: "Backend & Vector Engines",
+      id: "backend-infrastructure",
+      title: "Backend & AI Infrastructure",
       icon: <Database className="w-6 h-6 text-violet-400" />,
       tagline: "scalable pipeline infrastructure",
       glowClass: "panel-glow-purple",
       colorTheme: "violet",
       skills: [
-        { name: "API Architecture Design", level: "expert" },
-        { name: "Vector Database Indexing", level: "expert" },
-        { name: "Schema & Query Optimization", level: "expert" },
-        { name: "High-Performance Caching", level: "advanced" },
-        { name: "Asynchronous Task Pipelines", level: "advanced" }
+        { name: "FastAPI, Django & Flask", level: "expert" },
+        { name: "REST API Engineering", level: "expert" },
+        { name: "LangChain Orchestration", level: "expert" },
+        { name: "LangGraph Agent Pipelines", level: "expert" },
+        { name: "LlamaIndex Framework", level: "advanced" },
+        { name: "Async AI Execution Pipelines", level: "expert" }
       ],
-      tools: ["Python", "FastAPI", "Django", "Flask", "MySQL", "PostgreSQL", "MongoDB", "ChromaDB", "Qdrant", "Redis"]
+      tools: ["Python", "FastAPI", "Flask", "Django", "LangChain", "LangGraph", "LlamaIndex"]
     },
     {
-      id: "mlops-quality",
-      title: "MLOps & System Quality",
-      icon: <Cpu className="w-6 h-6 text-emerald-400" />,
+      id: "automation-vector",
+      title: "Workflow, Vector & MLOps",
+      icon: <Workflow className="w-6 h-6 text-emerald-400" />,
       tagline: "robust production integration",
       glowClass: "panel-glow-gold",
       colorTheme: "emerald",
       skills: [
-        { name: "Containerization & Orchestration", level: "advanced" },
-        { name: "Cloud Compute Provisioning", level: "advanced" },
-        { name: "Model Eval & Guardrailing", level: "expert" },
-        { name: "Automated Integration Testing", level: "advanced" },
-        { name: "CI / CD Model Deployment", level: "advanced" }
+        { name: "n8n AI Workflows & Automation", level: "expert" },
+        { name: "Multi-step Reasoning Pipelines", level: "expert" },
+        { name: "ChromaDB & Qdrant Vector Systems", level: "expert" },
+        { name: "PostgreSQL, MySQL, Redis", level: "advanced" },
+        { name: "Promptfoo & LangSmith Evaluation", level: "advanced" },
+        { name: "Docker, Azure & CI/CD Pipelines", level: "advanced" }
       ],
-      tools: ["Docker", "Microsoft Azure", "Pytest", "LangSmith", "Promptfoo"]
+      tools: ["n8n", "ChromaDB", "Qdrant", "Promptfoo", "LangSmith", "Docker", "Azure", "Pytest"]
     }
   ];
 
   const projectsData = [
     {
       index: "01",
-      title: "AI-Powered Churn Prediction Software & Retention Suite",
+      title: "AI-Powered Churn Prediction Engine",
       scope: "Enterprise Customer Retention",
-      context: "Led end-to-end ML pipeline for WHMCS client data. Fine-tuned transformer models for sentiment analysis of support tickets to calculate real-time churn probability.",
-      deepDive: "By extracting support logs, customer profiles, and service health indices, the system correlates customer sentiment with historical subscription records. Integrated optimized Pytest pipelines and containerized deployment flows using Docker directly into WHMCS environments for real-time proactive alerts, dramatically boosting preemptive support outreach metrics.",
-      tags: ["Transformers", "Sentiment Analysis", "WHMCS Integration", "Docker", "Pytest"],
+      context: "Predictive AI platform engineered for WHMCS ecosystems using behavioral analytics, transformer-based sentiment intelligence, and automated ML pipelines.",
+      deepDive: "Lined up behavioral tracking metrics, product metrics, and financial records for clients. Built a deep sentiment classification system of history support logs with fine-tuned transformers. Containerized via Docker and covered with Pytest to proactively alert retention squads before cancellations occur.",
+      tags: ["Transformers", "Behavioral Analytics", "WHMCS Integration", "Sentiment Intelligence", "Docker", "Pytest"],
       link: "https://github.com"
     },
     {
       index: "02",
-      title: "Agentic AI Support & Contextual Reasoning Framework",
-      scope: "Context-Aware Agent Network",
-      context: "Built a LangGraph + FastAPI support system using Qwen2.5-7B and a RAG pipeline (ChromaDB) for smart query reasoning across server control panels. Includes a chat auto-summarization plugin via Gemini/LLaMA.",
-      deepDive: "This stateful multi-agent system uses LangGraph to route queries based on topic context. Standard documentation is indexed in ChromaDB for high-accuracy RAG. Uses Qwen2.5 (7B parametrics) as local reasoning nodes alongside OpenAI or Gemini proxy APIs. Automatically synthesizes long support threads into concise summaries.",
-      tags: ["LangGraph", "FastAPI", "Qwen2.5", "RAG (ChromaDB)", "Gemini", "LLaMA"],
+      title: "Agentic AI Support Framework",
+      scope: "LangGraph Reasoning Node",
+      context: "Context-aware support architecture powered by LangGraph, FastAPI, vector retrieval, and multi-model reasoning systems.",
+      deepDive: "Engineered sequential reasoning algorithms and multi-agent system state graphs with LangGraph. Utilized FastAPI to expose low-latency RAG endpoints indexing complete technical libraries within ChromaDB to handle automated server panel customer queries.",
+      tags: ["LangGraph", "FastAPI", "Vector Retrieval", "Multi-Agent System", "RAG Pipeline"],
       link: "https://github.com"
     },
     {
       index: "03",
-      title: "Visual Hybrid Search & Analytics Engine",
+      title: "Visual Hybrid Search Engine",
       scope: "Multimodal Vector Retrieval",
-      context: "Developed an Amazon-style visual product search using FastAPI, TrOCR, CLIP, and ChromaDB with hybrid vector similarity ranking.",
-      deepDive: "Combines text query tokenization and multimodal CLIP image embeddings to provide highly accurate, cross-modal retrieval. Implemented TrOCR for text detection inside product decals and label images. Computes hybrid search ranks combining semantic, keyword, and visual coordinates with lightning-fast query latency.",
-      tags: ["CLIP", "TrOCR", "FastAPI", "ChromaDB", "Hybrid Vector Search"],
+      context: "Semantic visual search system combining OCR extraction, CLIP embeddings, and intelligent vector similarity ranking.",
+      deepDive: "Merged text queries and picture embeddings in the identical latent space with CLIP. Integrated TrOCR logic for instant textual recognition inside product images, sorting similarities with high speed vector rankings via Qdrant.",
+      tags: ["CLIP Embeddings", "TrOCR", "Vector Similarity", "OCR Detection", "Hybrid Ranking"],
+      link: "https://github.com"
+    },
+    {
+      index: "04",
+      title: "Conversational CSV Intelligence",
+      scope: "Data RAG & Analysis",
+      context: "RAG-powered conversational interface enabling natural language interaction with structured business datasets.",
+      deepDive: "Implemented advanced pandas structures and LLM-assisted schema queries. Enables non-technical analytics personas to request aggregations, data stats, and logs summaries through chat, retrieving formatted dynamic reporting panels.",
+      tags: ["Data RAG", "Pandas Engine", "LlamaIndex", "Dataset Chat", "Analysis Automation"],
+      link: "https://github.com"
+    },
+    {
+      index: "05",
+      title: "Semantic Infrastructure Recommendation Engine",
+      scope: "Embedding-driven Recommendation",
+      context: "Embedding-driven recommendation architecture for intelligent server and service plan matching.",
+      deepDive: "Leveraged embedding vectors of technical service plans, servers, and features. Intelligently matches user requirements or hardware specs to identical WHMCS service models, scaling cross-sales vectors with precision.",
+      tags: ["Semantic Embeddings", "Recommendation System", "Infrastructure Match", "Telemetry Analytics"],
       link: "https://github.com"
     }
   ];
@@ -334,12 +361,20 @@ export default function Page() {
               03 // Systems
             </button>
             <button
-              onClick={() => scrollToSection("contact")}
+              onClick={() => scrollToSection("timeline")}
               className={`font-mono text-xs tracking-wider uppercase transition-colors ${
-                activeSection === "contact" ? "text-orange-400" : "text-gray-400 hover:text-white"
+                activeSection === "timeline" ? "text-orange-400" : "text-gray-400 hover:text-white"
               }`}
             >
-              04 // Connect
+              04 // Timeline
+            </button>
+            <button
+              onClick={() => scrollToSection("contact")}
+              className={`font-mono text-xs tracking-wider uppercase transition-colors ${
+                activeSection === "contact" ? "text-violet-405" : "text-gray-400 hover:text-white"
+              }`}
+            >
+              05 // Connect
             </button>
           </nav>
 
@@ -374,28 +409,49 @@ export default function Page() {
             >
               <div className="flex flex-col gap-4">
                 <button
-                  onClick={() => scrollToSection("hero")}
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    scrollToSection("hero");
+                  }}
                   className="font-mono text-sm tracking-wider uppercase text-left py-2 border-b border-white/5 text-gray-300"
                 >
                   <span className="text-orange-400 mr-2">01 //</span> Home
                 </button>
                 <button
-                  onClick={() => scrollToSection("expertise")}
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    scrollToSection("expertise");
+                  }}
                   className="font-mono text-sm tracking-wider uppercase text-left py-2 border-b border-white/5 text-gray-300"
                 >
                   <span className="text-violet-400 mr-2">02 //</span> AI Stack
                 </button>
                 <button
-                  onClick={() => scrollToSection("projects")}
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    scrollToSection("projects");
+                  }}
                   className="font-mono text-sm tracking-wider uppercase text-left py-2 border-b border-white/5 text-gray-300"
                 >
                   <span className="text-amber-400 mr-2">03 //</span> Systems
                 </button>
                 <button
-                  onClick={() => scrollToSection("contact")}
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    scrollToSection("timeline");
+                  }}
+                  className="font-mono text-sm tracking-wider uppercase text-left py-2 border-b border-white/5 text-gray-300"
+                >
+                  <span className="text-orange-400 mr-2">04 //</span> Timeline
+                </button>
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    scrollToSection("contact");
+                  }}
                   className="font-mono text-sm tracking-wider uppercase text-left py-2 text-gray-300"
                 >
-                  <span className="text-orange-400 mr-2">04 //</span> Connect
+                  <span className="text-violet-400 mr-2">05 //</span> Connect
                 </button>
               </div>
               <button
@@ -446,7 +502,7 @@ export default function Page() {
               >
                 <Sparkles className="w-3.5 h-3.5 text-orange-400" />
                 <span className="font-mono text-[10px] uppercase text-gray-300 tracking-widest">
-                  Designing Stateful Decision Engines
+                  01 / CORE INTELLIGENCE
                 </span>
               </motion.div>
 
@@ -454,14 +510,14 @@ export default function Page() {
               <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-medium leading-[1.05] tracking-tighter text-white lowercase">
                 <span className="block mb-2 text-white">
                   <CinematicReveal
-                    words="solving complex data."
+                    words="engineering intelligent systems"
                     delay={0.15}
                     wordDelay={0.05}
                   />
                 </span>
                 <span className="bg-gradient-to-r from-orange-400 via-amber-400 to-violet-400 bg-clip-text text-transparent italic inline-block mt-1 sm:mt-0">
                   <CinematicReveal
-                    words="building intelligent systems."
+                    words="for real-world scale."
                     delay={0.45}
                     wordDelay={0.05}
                   />
@@ -471,7 +527,7 @@ export default function Page() {
               {/* Structured Minimal Human Subheading with Cinematic Blur Transition */}
               <CinematicSubheading delay={0.8}>
                 <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed font-sans max-w-2xl font-normal">
-                  I am <span className="text-white font-medium">Munshid Rahman K</span>, an AI/ML Engineer dedicating my mind to translating advanced statistical learning algorithms and generative technology into robust, highly-scalable, business-driven framework architectures.
+                  focused on building production-grade LLM applications, autonomous AI workflows, retrieval architectures, and scalable backend intelligence systems.
                 </p>
               </CinematicSubheading>
 
@@ -602,42 +658,105 @@ export default function Page() {
             </div>
           </div>
 
-          {/* Quick Stats Panel Embedded directly into the Hero for maximum initial impact */}
-          <div className="mt-16 sm:mt-24 max-w-4xl border-t border-white/10 pt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-violet-500/10 flex items-center justify-center text-violet-400 border border-violet-500/20">
-                <Award className="w-6 h-6" />
-              </div>
-              <div>
-                <span className="block text-2xl font-display font-semibold text-white">490+</span>
-                <span className="block text-xs font-mono text-gray-400 uppercase tracking-widest">
-                  Trainees mentored in Data Science
-                </span>
-              </div>
+          {/* 02 / NEURAL IDENTITY SECTION */}
+          <div className="mt-20 sm:mt-28 border-t border-white/10 pt-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div className="lg:col-span-5 space-y-4">
+              <span className="font-mono text-xs uppercase text-orange-400 tracking-widest flex items-center gap-1.5 font-bold">
+                <Brain className="w-4 h-4 text-orange-400" />
+                02 / NEURAL IDENTITY
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-display font-medium text-white leading-tight lowercase">
+                architecting core cognitive reasoning networks.
+              </h3>
+              <p className="text-gray-400 font-sans text-sm leading-relaxed max-w-md">
+                I design and deploy intelligent systems that combine Generative AI, RAG pipelines, NLP, OCR, vector retrieval, and workflow automation into production-ready business solutions.
+              </p>
             </div>
 
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-400 border border-orange-500/20">
-                <Sparkles className="w-6 h-6" />
-              </div>
-              <div>
-                <span className="block text-2xl font-display font-semibold text-white">4.9 / 5</span>
-                <span className="block text-xs font-mono text-gray-400 uppercase tracking-widest">
-                  Trainer Evaluation Rating
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6 bg-[#09080d]/40 backdrop-blur-md p-6 rounded-2xl border border-white/5">
+              <div className="space-y-3">
+                <span className="block font-mono text-[9px] text-orange-450 uppercase tracking-widest font-bold">
+                  // My work revolves around:
                 </span>
+                <ul className="space-y-2 text-xs text-gray-300 font-sans">
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-orange-400/80 flex-shrink-0" />
+                    LLM orchestration
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-orange-400/80 flex-shrink-0" />
+                    Agentic AI systems
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-orange-400/80 flex-shrink-0" />
+                    Semantic retrieval
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-orange-400/80 flex-shrink-0" />
+                    AI workflow automation
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-orange-400/80 flex-shrink-0" />
+                    Context-aware reasoning
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-orange-400/80 flex-shrink-0" />
+                    Scalable inference pipelines
+                  </li>
+                </ul>
+              </div>
+
+              <div className="space-y-4 border-t sm:border-t-0 sm:border-l border-white/10 pt-4 sm:pt-0 sm:pl-6 flex flex-col justify-between">
+                <div>
+                  <span className="block font-mono text-[9px] text-orange-450 uppercase tracking-widest font-bold mb-2">
+                    // Building With
+                  </span>
+                  <p className="text-xs text-gray-300 leading-relaxed font-sans">
+                    FastAPI, LangChain, LangGraph, LlamaIndex, n8n, ChromaDB, Qdrant, GPT, Gemini, Qwen, and LLaMA ecosystems.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-1.5 pt-2">
+                  <span className="text-[9px] font-mono bg-white/5 border border-white/5 text-gray-400 px-2.5 py-1 rounded">FASTAPI</span>
+                  <span className="text-[9px] font-mono bg-white/5 border border-white/5 text-gray-400 px-2.5 py-1 rounded">LANGGRAPH</span>
+                  <span className="text-[9px] font-mono bg-white/5 border border-white/5 text-gray-400 px-2.5 py-1 rounded">CHROMADB</span>
+                  <span className="text-[9px] font-mono bg-white/5 border border-white/5 text-gray-400 px-2.5 py-1 rounded">QDRANT</span>
+                </div>
               </div>
             </div>
+          </div>
 
-            <button
-              onClick={() => setIsChatOpen(true)}
-              className="flex items-center justify-between gap-4 p-3 bg-white/5 rounded-xl border border-white/10 hover:border-orange-500/30 transition-all text-left text-xs max-w-sm"
-            >
-              <div className="flex items-center gap-2.5">
-                <div className="w-2 h-2 rounded-full bg-orange-400 animate-pulse" />
-                <span className="font-mono text-gray-300">Let&apos;s test my contextual knowledge</span>
+          {/* 06 / SYSTEM METRICS SECTION */}
+          <div className="mt-16 sm:mt-24 border-t border-white/10 pt-12">
+            <span className="font-mono text-xs uppercase text-violet-400 tracking-widest flex items-center gap-1.5 font-bold mb-8">
+              <TrendingUp className="w-4 h-4 text-violet-400" />
+              06 / SYSTEM METRICS
+            </span>
+            <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
+              <div className="p-4 bg-white/5 border border-white/5 hover:border-violet-500/20 rounded-xl space-y-1 group transition-all text-left">
+                <span className="block text-2xl font-semibold text-white tracking-tight group-hover:text-violet-450 transition-colors">490+</span>
+                <span className="block text-[9px] font-mono text-gray-450 uppercase tracking-widest leading-normal">Engineers &amp; Students Mentored</span>
               </div>
-              <ArrowRight className="w-4 h-4 text-orange-400 flex-shrink-0" />
-            </button>
+              <div className="p-4 bg-white/5 border border-white/5 hover:border-violet-500/20 rounded-xl space-y-1 group transition-all text-left">
+                <span className="block text-2xl font-semibold text-white tracking-tight group-hover:text-violet-450 transition-colors">4.9/5</span>
+                <span className="block text-[9px] font-mono text-gray-450 uppercase tracking-widest leading-normal">Training Evaluation</span>
+              </div>
+              <div className="p-4 bg-white/5 border border-white/5 hover:border-violet-500/20 rounded-xl space-y-1 group transition-all text-left">
+                <span className="block text-2xl font-semibold text-white tracking-tight group-hover:text-violet-450 transition-colors">Delivered</span>
+                <span className="block text-[9px] font-mono text-gray-450 uppercase tracking-widest leading-normal">Production AI Systems</span>
+              </div>
+              <div className="p-4 bg-white/5 border border-white/5 hover:border-violet-500/20 rounded-xl space-y-1 group transition-all text-left">
+                <span className="block text-2xl font-semibold text-white tracking-tight group-hover:text-violet-450 transition-colors">Engineered</span>
+                <span className="block text-[9px] font-mono text-gray-450 uppercase tracking-widest leading-normal">Multi-LLM Integrations</span>
+              </div>
+              <div className="p-4 bg-white/5 border border-white/5 hover:border-violet-500/20 rounded-xl space-y-1 group transition-all text-left">
+                <span className="block text-2xl font-semibold text-white tracking-tight group-hover:text-violet-450 transition-colors">Built</span>
+                <span className="block text-[9px] font-mono text-gray-450 uppercase tracking-widest leading-normal">End-to-End RAG Architectures</span>
+              </div>
+              <div className="p-4 bg-white/5 border border-white/5 hover:border-violet-500/20 rounded-xl space-y-1 group transition-all text-left">
+                <span className="block text-2xl font-semibold text-white tracking-tight group-hover:text-violet-450 transition-colors">Automated</span>
+                <span className="block text-[9px] font-mono text-gray-450 uppercase tracking-widest leading-normal">Intelligent Workflow Pipelines</span>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -712,7 +831,7 @@ export default function Page() {
             <div className="space-y-3 mb-16">
               <span className="font-mono text-xs uppercase text-violet-400 tracking-widest flex items-center gap-1.5 font-bold">
                 <Terminal className="w-3.5 h-3.5" />
-                02 / COGNITIVE ENGINE
+                03 / COGNITIVE STACK
               </span>
               <h2 className="text-3xl sm:text-5xl font-display font-medium tracking-tight lowercase">
                 <CinematicReveal words="the intelligent" delay={0.1} />{" "}
@@ -722,7 +841,7 @@ export default function Page() {
               </h2>
               <CinematicSubheading delay={0.4}>
                 <p className="text-sm sm:text-base text-gray-400 font-sans max-w-xl">
-                  An exhaustive stack built for high-accuracy reasoning, prompt evaluated models, quality-controlled testing pipelines, and fast indexing.
+                  An exhaustive stack built for high-accuracy reasoning, prompt evaluated models, quality-controlled testing pipelines, and fast vector indexing.
                 </p>
               </CinematicSubheading>
             </div>
@@ -864,7 +983,7 @@ export default function Page() {
             <div className="space-y-3 mb-16">
               <span className="font-mono text-xs uppercase text-amber-500 tracking-widest flex items-center gap-1.5 font-bold">
                 <Layers className="w-3.5 h-3.5" />
-                03/ FEASIBLE ARCHITECTURES
+                04 / INTELLIGENT SYSTEMS
               </span>
               <h2 className="text-3xl sm:text-5xl font-display font-medium tracking-tight lowercase">
                 <CinematicReveal words="featured intelligent" delay={0.1} />{" "}
@@ -874,7 +993,7 @@ export default function Page() {
               </h2>
               <CinematicSubheading delay={0.4}>
                 <p className="text-sm sm:text-base text-gray-400 font-sans max-w-xl">
-                  Real-world deployment case studies demonstrating production MLOps integration, contextual LangGraph setups, and deep indexing.
+                  Real-world deployment case studies demonstrating production MLOps integration, contextual LangGraph setups, and deep vector indexing.
                 </p>
               </CinematicSubheading>
             </div>
@@ -986,6 +1105,133 @@ export default function Page() {
           </div>
         </section>
 
+        {/* 05 / ENGINEERING TIMELINE */}
+        <section
+          ref={timelineRef}
+          id="timeline"
+          className="py-24 md:py-32 relative border-t border-white/5"
+        >
+          {/* Ambient visual overlay */}
+          <div className="absolute top-1/3 right-1/4 -z-20 w-80 h-80 rounded-full bg-orange-500/5 blur-[100px] pointer-events-none" />
+          
+          <div className="relative z-10">
+            <div className="space-y-3 mb-16">
+              <span className="font-mono text-xs uppercase text-orange-450 tracking-widest flex items-center gap-1.5 font-bold">
+                <Briefcase className="w-3.5 h-3.5" />
+                05 / ENGINEERING TIMELINE
+              </span>
+              <h2 className="text-3xl sm:text-5xl font-display font-medium tracking-tight lowercase">
+                <CinematicReveal words="professional journey &" delay={0.1} />{" "}
+                <span className="italic block sm:inline text-orange-400">
+                  <CinematicReveal words="milestones." delay={0.25} />
+                </span>
+              </h2>
+              <CinematicSubheading delay={0.4}>
+                <p className="text-sm sm:text-base text-gray-400 font-sans max-w-xl">
+                  Dedicated experience architecting intelligent backend systems, training technical minds, and implementing enterprise MLOps.
+                </p>
+              </CinematicSubheading>
+            </div>
+
+            {/* Timeline structure */}
+            <div className="relative max-w-4xl mx-auto pl-6 md:pl-8 border-l border-white/10 space-y-12">
+              
+              {/* Event 1 */}
+              <div className="relative group">
+                {/* Node icon and glowing point */}
+                <div className="absolute -left-[31px] md:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-orange-500 border-4 border-[#07060b] group-hover:scale-110 group-hover:bg-amber-400 transition-all shadow-[0_0_12px_rgba(249,115,22,0.6)] animate-pulse" />
+                
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-start bg-[#09080d]/40 border border-white/5 group-hover:border-white/10 p-6 md:p-8 rounded-2xl backdrop-blur-md transition-all">
+                  <div className="md:col-span-4 space-y-1">
+                    <span className="font-mono text-xs text-orange-400 font-bold uppercase tracking-wider">Poornam Info Vision</span>
+                    <h3 className="font-display font-semibold text-lg text-white">AI/ML Engineer</h3>
+                    <span className="inline-block font-mono text-[10px] text-gray-400 bg-white/5 border border-white/5 px-2 py-0.5 rounded uppercase mt-1">2024 — Present</span>
+                  </div>
+                  <div className="md:col-span-8">
+                    <ul className="space-y-2.5 text-xs sm:text-sm text-gray-300 font-sans">
+                      <li className="flex items-start gap-2.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-orange-500/80 mt-1.5 flex-shrink-0" />
+                        <span>Built production-grade AI systems for churn prediction and intelligent support automation.</span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-orange-500/80 mt-1.5 flex-shrink-0" />
+                        <span>Developed RAG-based multi-source reasoning pipelines for deep textual architectures.</span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-orange-500/80 mt-1.5 flex-shrink-0" />
+                        <span>Integrated GPT, Gemini, Qwen, and LLaMA models into scalable AI/ML pipelines.</span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-orange-500/80 mt-1.5 flex-shrink-0" />
+                        <span>Engineered contextual summarization and highly optimized retrieval setups.</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Event 2 */}
+              <div className="relative group">
+                <div className="absolute -left-[31px] md:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-violet-500 border-4 border-[#07060b] group-hover:scale-110 group-hover:bg-violet-400 transition-all shadow-[0_0_12px_rgba(139,92,246,0.6)]" />
+                
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-start bg-[#09080d]/40 border border-white/5 group-hover:border-white/10 p-6 md:p-8 rounded-2xl backdrop-blur-md transition-all">
+                  <div className="md:col-span-4 space-y-1">
+                    <span className="font-mono text-xs text-violet-400 font-bold uppercase tracking-wider">RGC Dynamics</span>
+                    <h3 className="font-display font-semibold text-lg text-white">AI Developer</h3>
+                    <span className="inline-block font-mono text-[10px] text-gray-400 bg-white/5 border border-white/5 px-2 py-0.5 rounded uppercase mt-1">2023 // 1 YEAR</span>
+                  </div>
+                  <div className="md:col-span-8">
+                    <ul className="space-y-2.5 text-xs sm:text-sm text-gray-300 font-sans">
+                      <li className="flex items-start gap-2.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-violet-400 mt-1.5 flex-shrink-0" />
+                        <span>Built visual AI search systems and multi-modal models utilizing CLIP, TrOCR, and ChromaDB vector stores.</span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-violet-400 mt-1.5 flex-shrink-0" />
+                        <span>Developed robust hybrid vector retrieval architectures with high-accuracy query parsing.</span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-violet-400 mt-1.5 flex-shrink-0" />
+                        <span>Engineered custom semantic ranking pipelines optimizing discovery engines.</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Event 3 */}
+              <div className="relative group">
+                <div className="absolute -left-[31px] md:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-amber-500 border-4 border-[#07060b] group-hover:scale-110 group-hover:bg-amber-400 transition-all shadow-[0_0_12px_rgba(245,158,11,0.6)]" />
+                
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-start bg-[#09080d]/40 border border-white/5 group-hover:border-white/10 p-6 md:p-8 rounded-2xl backdrop-blur-md transition-all">
+                  <div className="md:col-span-4 space-y-1">
+                    <span className="font-mono text-xs text-amber-500 font-bold uppercase tracking-wider">Techolas Technologies</span>
+                    <h3 className="font-display font-semibold text-lg text-white">Data Science Trainer</h3>
+                    <span className="inline-block font-mono text-[10px] text-gray-400 bg-white/5 border border-white/5 px-2 py-0.5 rounded uppercase mt-1">2022 — 2023</span>
+                  </div>
+                  <div className="md:col-span-8">
+                    <ul className="space-y-2.5 text-xs sm:text-sm text-gray-300 font-sans">
+                      <li className="flex items-start gap-2.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500/80 mt-1.5 flex-shrink-0" />
+                        <span>Mentored 490+ students across critical Data Science, Statistics, and AI domains.</span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500/80 mt-1.5 flex-shrink-0" />
+                        <span>Delivered detailed training on Python, Power BI, Tableau and Machine Learning architectures.</span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500/80 mt-1.5 flex-shrink-0" />
+                        <span>Achieved a 4.9/5 student feedback/evaluation rating.</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
         {/* CONTACT / CONNECT */}
         <section
           ref={contactRef}
@@ -1001,7 +1247,7 @@ export default function Page() {
               <div className="space-y-3">
                 <span className="font-mono text-xs uppercase text-orange-400 tracking-widest flex items-center gap-1.5 font-bold">
                   <Activity className="w-3.5 h-3.5 animate-pulse" />
-                  04 / SYNAPTIC LINK
+                  07 / SYNAPTIC LINK
                 </span>
                 <h2 className="text-3xl sm:text-5xl font-display font-medium tracking-tight lowercase">
                   <CinematicReveal words="let's build something" delay={0.1} />{" "}
@@ -1115,26 +1361,32 @@ export default function Page() {
       <footer className="relative z-10 border-t border-white/10 bg-[#040306]/80 backdrop-blur-md py-12 text-center text-gray-500 select-none">
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="text-left space-y-1">
-            <span className="font-display font-medium text-white text-sm block">Munshid Rahman K</span>
+            <span className="font-mono text-[9px] text-orange-400 block uppercase tracking-widest font-bold">
+              08 / FOOTER SIGNAL
+            </span>
+            <span className="font-display font-medium text-white text-sm block font-bold">Munshid Rahman K</span>
             <span className="font-mono text-[10px] text-gray-400 block uppercase tracking-widest">
               Translating intelligence, solving complex data
             </span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-6 font-mono text-[11px] text-gray-400">
+          <div className="flex flex-wrap items-center gap-4 font-mono text-[11px] text-gray-400">
             <button onClick={() => scrollToSection("hero")} className="hover:text-white transition-colors">
               [ 01 // Home ]
             </button>
             <button onClick={() => scrollToSection("expertise")} className="hover:text-white transition-colors">
-              [ 02 // Stack ]
+              [ 03 // Stack ]
             </button>
             <button onClick={() => scrollToSection("projects")} className="hover:text-white transition-colors">
-              [ 03 // Systems ]
+              [ 04 // Systems ]
+            </button>
+            <button onClick={() => scrollToSection("timeline")} className="hover:text-white transition-colors">
+              [ 05 // Timeline ]
             </button>
           </div>
 
           <div className="text-center sm:text-right font-mono text-[10px] text-gray-500">
-            © 2026 // MUNSHID RAHMAN K. INTERNAL STACK v2.5
+            © 2026 // MUNSHID RAHMAN K. INTERNAL STACK v3.0
           </div>
         </div>
       </footer>

@@ -34,6 +34,7 @@ export default function ThreeBackground({ activeSection }: ThreeBackgroundProps)
           meshColorSecondary: new THREE.Color("#c3b1e1"),
         };
       case "projects":
+      case "timeline":
       case "contact":
       default:
         return {
