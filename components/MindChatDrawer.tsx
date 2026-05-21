@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Send, Sparkles, X, BrainCircuit, ArrowUpRight, MessageSquareCode } from "lucide-react";
+import Markdown from "react-markdown";
 
 interface Message {
   role: "user" | "assistant";
@@ -163,12 +164,35 @@ export default function MindChatDrawer({ isOpen, onClose }: MindChatDrawerProps)
                       }`}
                     >
                       {msg.role === "assistant" && (
-                        <div className="flex items-center gap-1.5 mb-1.5 font-mono text-[10px] text-orange-400 tracking-wider uppercase font-medium">
+                        <div className="flex items-center gap-1.5 mb-2 font-mono text-[10px] text-orange-400 tracking-wider uppercase font-medium">
                           <MessageSquareCode className="w-3.5 h-3.5" />
                           Response Engine
                         </div>
                       )}
-                      <p className="whitespace-pre-line">{msg.content}</p>
+                      {msg.role === "assistant" ? (
+                        <div className="markdown-body text-gray-200 space-y-1.5 overflow-hidden">
+                          <Markdown
+                            components={{
+                              p: ({ children }) => <p className="mb-2 last:mb-0 leading-relaxed font-sans">{children}</p>,
+                              ul: ({ children }) => <ul className="list-disc pl-5 mb-2 space-y-1 font-sans">{children}</ul>,
+                              ol: ({ children }) => <ol className="list-decimal pl-5 mb-2 space-y-1 font-sans">{children}</ol>,
+                              li: ({ children }) => <li className="text-gray-300 font-sans">{children}</li>,
+                              strong: ({ children }) => <strong className="font-semibold text-white">{children}</strong>,
+                              em: ({ children }) => <em className="italic">{children}</em>,
+                              code: ({ children }) => <code className="bg-white/10 px-1.5 py-0.5 rounded font-mono text-[11px] text-orange-350 break-all">{children}</code>,
+                              pre: ({ children }) => <pre className="bg-black/40 p-3 rounded-lg overflow-x-auto font-mono text-xs my-2 border border-white/5 text-orange-200">{children}</pre>,
+                              h1: ({ children }) => <h1 className="text-base font-bold text-white mt-3 mb-1.5">{children}</h1>,
+                              h2: ({ children }) => <h2 className="text-sm font-bold text-white mt-3 mb-1.5">{children}</h2>,
+                              h3: ({ children }) => <h3 className="text-xs font-bold text-white mt-2 mb-1">{children}</h3>,
+                              a: ({ href, children }) => <a href={href} target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:text-orange-300 underline underline-offset-2 transition-colors">{children}</a>,
+                            }}
+                          >
+                            {msg.content}
+                          </Markdown>
+                        </div>
+                      ) : (
+                        <p className="whitespace-pre-line font-sans">{msg.content}</p>
+                      )}
                     </div>
                   </div>
                 ))}

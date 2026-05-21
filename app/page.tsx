@@ -509,9 +509,16 @@ export default function Page() {
               {/* Custom Lowercase Display Headline with Cinematic Reveal */}
               <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-medium leading-[1.05] tracking-tighter text-white lowercase">
                 <span className="block mb-2 text-white">
+                  <span className="inline-block bg-gradient-to-r from-amber-500/10 via-amber-600/10 to-orange-500/10 border border-amber-500/20 rounded-full px-4 py-0.5 sm:px-5 sm:py-1 text-[#fffcf0] align-middle mr-2.5 sm:mr-4 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_4px_12px_rgba(0,0,0,0.5)]">
+                    <CinematicReveal
+                      words="engineering"
+                      delay={0.15}
+                      wordDelay={0.05}
+                    />
+                  </span>
                   <CinematicReveal
-                    words="engineering intelligent systems"
-                    delay={0.15}
+                    words="intelligent systems"
+                    delay={0.35}
                     wordDelay={0.05}
                   />
                 </span>
@@ -611,32 +618,6 @@ export default function Page() {
                         referrerPolicy="no-referrer"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-85" />
-                      
-                      {/* Upload / Selector trigger overlay */}
-                      <div className="absolute inset-0 bg-black/75 opacity-0 group-hover/avatar:opacity-100 flex flex-col items-center justify-center gap-2.5 transition-opacity duration-300 z-30 px-4">
-                        <label className="flex items-center gap-2 cursor-pointer bg-gradient-to-r from-orange-500 to-amber-500 hover:brightness-110 text-white px-4 py-2.5 rounded-full font-mono text-[9px] tracking-widest font-bold shadow-lg shadow-orange-950/40 hover:scale-[1.03] transition-all select-none border border-orange-400/20">
-                          <Upload className="w-3.5 h-3.5" />
-                          <span>UPLOAD EXACT PHOTO</span>
-                          <input
-                            type="file"
-                            accept="image/*"
-                            className="hidden"
-                            onChange={handleAvatarUpload}
-                          />
-                        </label>
-                        {customAvatar && (
-                          <button
-                            onClick={clearCustomAvatar}
-                            className="flex items-center gap-1.5 text-gray-400 hover:text-white font-mono text-[8px] tracking-wider uppercase bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-full border border-white/10 transition-all select-none cursor-pointer"
-                          >
-                            <RefreshCw className="w-2.5 h-2.5" />
-                            Use AI Avatar
-                          </button>
-                        )}
-                        <p className="text-[8px] text-gray-400 font-mono text-center max-w-[180px] uppercase tracking-wider leading-normal">
-                          Loads locally instantly. Supports your custom png/jpg.
-                        </p>
-                      </div>
                     </div>
                   </div>
 
