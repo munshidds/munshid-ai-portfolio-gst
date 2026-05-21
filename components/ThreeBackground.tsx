@@ -139,6 +139,33 @@ export default function ThreeBackground({ activeSection }: ThreeBackgroundProps)
     scene.add(coneMesh);
     meshes.push(coneMesh);
 
+    // Mesh 5: Abstract Dodecahedron (Primary color)
+    const dodecahedronGeom = new THREE.DodecahedronGeometry(1.2, 0);
+    const dodecahedronMat = new THREE.MeshPhysicalMaterial({
+      color: colors.meshColorPrimary,
+      roughness: 0.3,
+      metalness: 0.7,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.1,
+    });
+    const dodecahedronMesh = new THREE.Mesh(dodecahedronGeom, dodecahedronMat);
+    dodecahedronMesh.position.set(-1.5, -5.5, -2);
+    scene.add(dodecahedronMesh);
+    meshes.push(dodecahedronMesh);
+
+    // Mesh 6: Floating Capsule (Secondary color)
+    const capsuleGeom = new THREE.CapsuleGeometry(0.6, 1.8, 8, 16);
+    const capsuleMat = new THREE.MeshStandardMaterial({
+      color: colors.meshColorSecondary,
+      roughness: 0.4,
+      metalness: 0.3,
+    });
+    const capsuleMesh = new THREE.Mesh(capsuleGeom, capsuleMat);
+    capsuleMesh.position.set(2, 5, 1);
+    capsuleMesh.rotation.set(Math.PI / 6, 0, Math.PI / 4);
+    scene.add(capsuleMesh);
+    meshes.push(capsuleMesh);
+
     meshesRef.current = meshes;
 
     // 4. Connective Particle Dust (Neural Network Connections)
@@ -233,6 +260,16 @@ export default function ThreeBackground({ activeSection }: ThreeBackgroundProps)
         meshes[3].rotation.y = -elapsed * 0.3;
         meshes[3].position.y = -4 + Math.cos(elapsed * 0.9) * 0.4;
       }
+      if (meshes[4]) {
+        meshes[4].rotation.x = elapsed * 0.25;
+        meshes[4].rotation.z = elapsed * -0.15;
+        meshes[4].position.y = -5.5 + Math.sin(elapsed * 0.6) * 0.45;
+      }
+      if (meshes[5]) {
+        meshes[5].rotation.y = elapsed * -0.18;
+        meshes[5].rotation.x = elapsed * 0.22;
+        meshes[5].position.y = 5 + Math.cos(elapsed * 0.75) * 0.35;
+      }
 
       // Rotate and sway particle net
       if (particles) {
@@ -274,6 +311,10 @@ export default function ThreeBackground({ activeSection }: ThreeBackgroundProps)
       torusMat.dispose();
       coneGeom.dispose();
       coneMat.dispose();
+      dodecahedronGeom.dispose();
+      dodecahedronMat.dispose();
+      capsuleGeom.dispose();
+      capsuleMat.dispose();
       particlesGeom.dispose();
       particlesMat.dispose();
       renderer.dispose();
@@ -299,6 +340,8 @@ export default function ThreeBackground({ activeSection }: ThreeBackgroundProps)
     const mesh2 = meshesRef.current[1];
     const mesh3 = meshesRef.current[2];
     const mesh4 = meshesRef.current[3];
+    const mesh5 = meshesRef.current[4];
+    const mesh6 = meshesRef.current[5];
 
     const initialMeshPrimary = mesh1 ? ((mesh1.material as THREE.MeshStandardMaterial).color).clone() : new THREE.Color("#ffffff");
     const initialMeshSecondary = mesh2 ? ((mesh2.material as THREE.MeshStandardMaterial).color).clone() : new THREE.Color("#ffffff");
@@ -330,6 +373,12 @@ export default function ThreeBackground({ activeSection }: ThreeBackgroundProps)
       }
       if (mesh4) {
         (mesh4.material as THREE.MeshStandardMaterial).color.copy(currentMeshSecondary);
+      }
+      if (mesh5) {
+        (mesh5.material as THREE.MeshPhysicalMaterial).color.copy(currentMeshPrimary);
+      }
+      if (mesh6) {
+        (mesh6.material as THREE.MeshStandardMaterial).color.copy(currentMeshSecondary);
       }
 
       if (progress < 1) {
