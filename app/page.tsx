@@ -315,7 +315,9 @@ export default function Page() {
       {/* Floating Header */}
       <header
         className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
-          hasScrolled ? "bg-black/40 backdrop-blur-md border-b border-white/5 py-4" : "bg-transparent py-6"
+          hasScrolled 
+            ? "bg-[#030205]/95 md:bg-black/85 backdrop-blur-lg border-b border-white/5 py-3.5 md:py-4 shadow-lg shadow-black/45" 
+            : "bg-transparent py-5 md:py-6"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
