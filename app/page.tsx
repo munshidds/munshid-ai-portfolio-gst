@@ -316,8 +316,8 @@ export default function Page() {
       <header
         className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
           hasScrolled 
-            ? "bg-[#030205]/95 md:bg-black/85 backdrop-blur-lg border-b border-white/5 py-3.5 md:py-4 shadow-lg shadow-black/45" 
-            : "bg-transparent py-5 md:py-6"
+            ? "bg-[#030205]/98 md:bg-black/85 backdrop-blur-lg border-b border-white/5 py-3 md:py-4 shadow-lg shadow-black/45" 
+            : "bg-[#030205] md:bg-transparent py-3.5 md:py-6 border-b border-white/5 md:border-b-0"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
@@ -659,7 +659,7 @@ export default function Page() {
             <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6 bg-[#09080d]/40 backdrop-blur-md p-6 rounded-2xl border border-white/5">
               <div className="space-y-3">
                 <span className="block font-mono text-[9px] text-orange-450 uppercase tracking-widest font-bold">
-                  // My work revolves around:
+                  {"// My work revolves around:"}
                 </span>
                 <ul className="space-y-2 text-xs text-gray-300 font-sans">
                   <li className="flex items-center gap-2">
@@ -692,7 +692,7 @@ export default function Page() {
               <div className="space-y-4 border-t sm:border-t-0 sm:border-l border-white/10 pt-4 sm:pt-0 sm:pl-6 flex flex-col justify-between">
                 <div>
                   <span className="block font-mono text-[9px] text-orange-450 uppercase tracking-widest font-bold mb-2">
-                    // Building With
+                    {"// Building With"}
                   </span>
                   <p className="text-xs text-gray-300 leading-relaxed font-sans">
                     FastAPI, LangChain, LangGraph, LlamaIndex, n8n, ChromaDB, Qdrant, GPT, Gemini, Qwen, and LLaMA ecosystems.
@@ -1224,7 +1224,7 @@ export default function Page() {
           {/* Subtle background glow */}
           <div className="absolute top-1/4 left-1/2 -z-20 w-80 h-80 rounded-full bg-orange-500/5 blur-[120px] pointer-events-none" />
 
-          <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto bg-[#0a0910] border border-white/10 rounded-3xl p-8 md:p-12 panel-glow">
+          <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto bg-[#0a0910] border border-white/10 rounded-3xl p-5 sm:p-8 md:p-12 panel-glow">
             {/* Context block */}
             <div className="space-y-6 flex flex-col justify-between">
               <div className="space-y-3">
@@ -1264,19 +1264,19 @@ export default function Page() {
             </div>
 
             {/* Direct human connections */}
-            <div className="space-y-6 flex flex-col justify-center">
+            <div className="space-y-4 sm:space-y-6 flex flex-col justify-center">
               {/* Direct email box */}
-              <div className="p-6 bg-white/5 rounded-2xl border border-white/10 space-y-3 group hover:border-orange-500/30 transition-all">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-orange-500/10 flex items-center justify-center text-orange-400 border border-orange-500/20">
+              <div className="p-4 sm:p-6 bg-white/5 rounded-2xl border border-white/10 group hover:border-orange-500/30 transition-all">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="w-10 h-10 rounded-full bg-orange-500/10 flex items-center justify-center text-orange-400 border border-orange-500/20 flex-shrink-0">
                       <Mail className="w-5 h-5" />
                     </div>
-                    <div>
-                      <span className="block text-[10px] font-mono text-gray-400 uppercase tracking-widest">
+                    <div className="min-w-0">
+                      <span className="block text-[9px] sm:text-[10px] font-mono text-gray-400 uppercase tracking-widest">
                         Email Address
                       </span>
-                      <span className="block text-sm font-semibold text-white">
+                      <span className="block text-xs sm:text-sm font-semibold text-white truncate group-hover:text-orange-300 transition-colors">
                         munshid.ds@gmail.com
                       </span>
                     </div>
@@ -1284,7 +1284,7 @@ export default function Page() {
 
                   <button
                     onClick={() => handleCopy("munshid.ds@gmail.com", "email")}
-                    className="w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-orange-500/20 flex items-center justify-center text-gray-400 hover:text-white transition-all active:scale-95 cursor-pointer"
+                    className="w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-orange-500/20 flex items-center justify-center text-gray-400 hover:text-white transition-all active:scale-95 cursor-pointer flex-shrink-0"
                     title="Copy Email"
                   >
                     {copiedText === "email" ? (
@@ -1297,25 +1297,25 @@ export default function Page() {
               </div>
 
               {/* Direct phone box */}
-              <div className="p-6 bg-white/5 rounded-2xl border border-white/10 space-y-3 group hover:border-orange-500/30 transition-all">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-orange-500/10 flex items-center justify-center text-orange-400 border border-orange-500/20">
+              <div className="p-4 sm:p-6 bg-white/5 rounded-2xl border border-white/10 group hover:border-orange-500/30 transition-all">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="w-10 h-10 rounded-full bg-orange-500/10 flex items-center justify-center text-orange-400 border border-orange-500/20 flex-shrink-0">
                       <Phone className="w-5 h-5" />
                     </div>
-                    <div>
-                      <span className="block text-[10px] font-mono text-gray-400 uppercase tracking-widest">
+                    <div className="min-w-0">
+                      <span className="block text-[9px] sm:text-[10px] font-mono text-gray-400 uppercase tracking-widest">
                         Telephone Node
                       </span>
-                      <span className="block text-sm font-semibold text-white">
+                      <span className="block text-xs sm:text-sm font-semibold text-white truncate group-hover:text-orange-300 transition-colors">
                         +91 9544428993
                       </span>
                     </div>
                   </div>
 
                   <button
-                    onClick={() => handleCopy("9544428993", "phone")}
-                    className="w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-orange-500/20 flex items-center justify-center text-gray-400 hover:text-white transition-all active:scale-95 cursor-pointer"
+                    onClick={() => handleCopy("+91 9544428993", "phone")}
+                    className="w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:border-orange-500/20 flex items-center justify-center text-gray-400 hover:text-white transition-all active:scale-95 cursor-pointer flex-shrink-0"
                     title="Copy Number"
                   >
                     {copiedText === "phone" ? (
@@ -1343,7 +1343,7 @@ export default function Page() {
       {/* FOOTER */}
       <footer className="relative z-10 border-t border-white/10 bg-[#040306]/80 backdrop-blur-md py-12 text-center text-gray-500 select-none">
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="text-left space-y-1">
+          <div className="text-center sm:text-left space-y-1">
             <span className="font-mono text-[9px] text-orange-400 block uppercase tracking-widest font-bold">
               08 / FOOTER SIGNAL
             </span>
@@ -1353,7 +1353,7 @@ export default function Page() {
             </span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4 font-mono text-[11px] text-gray-400">
+          <div className="flex flex-wrap items-center justify-center gap-4 font-mono text-[11px] text-gray-400">
             <button onClick={() => scrollToSection("hero")} className="hover:text-white transition-colors">
               [ 01 // Home ]
             </button>
