@@ -308,7 +308,7 @@ export default function Page() {
   ];
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen w-full overflow-x-hidden">
       {/* Three.js Interactive Background */}
       <ThreeBackground activeSection={activeSection} />
 
@@ -487,7 +487,7 @@ export default function Page() {
         <section
           ref={heroRef}
           id="hero"
-          className="min-h-screen flex flex-col justify-center pt-28 pb-16 md:pb-24 relative"
+          className="min-h-screen flex flex-col justify-center pt-28 pb-16 md:pb-24 relative overflow-hidden"
         >
           {/* Subtle decorative glow overlay */}
           <div className="absolute top-1/4 left-1/3 -z-20 w-80 h-80 rounded-full bg-orange-500/10 blur-[100px] pointer-events-none" />
@@ -1092,7 +1092,7 @@ export default function Page() {
         <section
           ref={timelineRef}
           id="timeline"
-          className="py-24 md:py-32 relative border-t border-white/5"
+          className="py-24 md:py-32 relative border-t border-white/5 overflow-hidden"
         >
           {/* Ambient visual overlay */}
           <div className="absolute top-1/3 right-1/4 -z-20 w-80 h-80 rounded-full bg-orange-500/5 blur-[100px] pointer-events-none" />
@@ -1219,7 +1219,7 @@ export default function Page() {
         <section
           ref={contactRef}
           id="contact"
-          className="py-24 md:py-32 relative border-t border-white/5"
+          className="py-24 md:py-32 relative border-t border-white/5 overflow-hidden"
         >
           {/* Subtle background glow */}
           <div className="absolute top-1/4 left-1/2 -z-20 w-80 h-80 rounded-full bg-orange-500/5 blur-[120px] pointer-events-none" />
